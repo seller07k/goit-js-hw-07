@@ -1,30 +1,10 @@
-class StringBuilder {
-  #value;
+const nameInput = document.getElementById("name-input");
+const nameOutput = document.getElementById("name-output");
 
-  constructor(initialValue) {
-    this.#value = initialValue;
-  }
+nameInput.addEventListener("input", updateGreeting);
 
-  getValue() {
-    return this.#value;
-  }
-  padEnd(str) {
-    this.#value = this.#value.concat(str);
-  }
-
-  padStart(str) {
-    this.#value = str.concat(this.#value);
-  }
-
-  padBoth(str) {
-    this.#value = str.concat(this.#value, str);
-  }
+function updateGreeting() {
+  const trimmedValue = nameInput.value.trim();
+  const outputText = trimmedValue === "" ? "Anonymous" : trimmedValue;
+  nameOutput.textContent = outputText;
 }
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
